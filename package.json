@@ -1,0 +1,12 @@
+{
+  "name": "renova-emprestimos",
+  "version": "0.0.0",
+  "description": "RenovaEmprestimos",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "taiko": "^1.2.5"
+  }
+}
