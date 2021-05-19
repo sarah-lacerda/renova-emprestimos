@@ -104,3 +104,4 @@ dist
 .tern-port
 
 # credentials.json should never be uploaded to remote repo
+credentials.json
