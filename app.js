@@ -1,15 +1,13 @@
 const {
-    $,
-    clear,
     click,
     openBrowser,
     goto,
-    focus,
     write,
-    textBox,
     dropDown,
     closeBrowser,
     press,
+    confirm,
+    accept
 } = require('taiko');
 
 const credentials = require('./credentials.json');
@@ -20,26 +18,31 @@ function sleep(ms) {
 
 async function login() {
     await dropDown({ name: 'idCategoriaHtml' }).select('42');
-    await press('Tab')
-    await press('Tab')
+    await press('Tab');
+    await press('Tab');
     await write(credentials.matricula);
-    await press('Tab')
+    await press('Tab');
     await write(credentials.senha);
     await press('Enter');
 }
 
+async function handleAlert() {
+    confirm(/^Confirma.*$/, async () => await accept())
+}
+
 async function renova() {
-    // TODO: Implement me
+    await handleAlert();
+    await click ('Renovar Todos');
 }
 
 (async () => {
     try {
         await openBrowser({
-            headless: false
+            headless: true
         });
         await goto("https://biblioteca.pucrs.br/renovacao");
         await login();
-        // await renova();
+        await renova();
         await sleep(2000);
     } catch (error) {
         console.error(error);
